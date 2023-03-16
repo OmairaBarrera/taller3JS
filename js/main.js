@@ -30,6 +30,16 @@ formularioSedes.addEventListener("submit", (e)=>{
     formularioSedes.reset();
 });
 //LISTA DE SEDES
+let listaSedes = ()=>{
+    let opciones = document.querySelector("[name='sede']");
+    console.log(opciones);
+    opciones.innerHTML=null;
+    for (let [val, id] of Object.entries(campus)){
+        opciones.insertAdjacentHTML("beforeend", `
+            <option value="${val}">${val}</option>
+        `)  
+    }
+}
 //FORMULARIO DE TEAMS
 //LISTA DE TEAMS
 //FORMULARIO DE TECNOLOGIAS

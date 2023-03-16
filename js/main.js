@@ -18,16 +18,23 @@ es electiva u obligatoria
 
 eventos de errores
 */
-
+let formularioSedes = document.querySelector("#formularioSedes");
 let campus = {};
-
 //FORMULARIO SEDES
+formularioSedes.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    let data = Object.fromEntries(new FormData(e.target))
+    campus[`${data.nombreSede}`] = {Teams:[], Tecnologias:[], Niveles:[], Campers:[], Trainers:[], Roadmap:[]};
+    console.log(campus);
+    listaSedes();
+    formularioSedes.reset();
+});
+//LISTA DE SEDES
 //FORMULARIO DE TEAMS
+//LISTA DE TEAMS
 //FORMULARIO DE TECNOLOGIAS
 //LISTA DE TECNOLOGIAS
 //FORMULARIO DE NIVELES
-//LISTA DE SEDES
-//LISTA DE TEAMS
 //LISTA DE NIVELES
 //FORMULARIO CAMPERS
 //FORMULARIO TRAINERS

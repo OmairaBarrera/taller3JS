@@ -8,22 +8,24 @@
     <!--css-->
     <link rel="stylesheet" href="/css/style.css">
     <!--JavaScript-->
-    <script src="/js/main.js"></script>
+    <script src="/js/main.js" defer></script>
 </head>
 <body>
     <!--FORMULARIO SEDES-->
-    <fieldset>
-        <legend>Sedes de CAMPUS</legend>
-        <form id="formularioSedes">
-            <label for="sede">Nombre de la sede:</label>
+    <form id="formularioSedes">
+        <fieldset>
+            <legend>Sedes de CAMPUS</legend>
+            <label for="Lsedes">Nombre de la sede:</label>
             <input type="text" name="nombreSede" placeholder="Ingrese nombre de la sede"><br><br>
             <input type="submit" value="GUARDAR">
-        </form>
-    </fieldset>
+        </fieldset>
+    </form>
     <!--FORMULARIO DE TEAMS-->
     <fieldset>
-        <legend>Sedes de CAMPUS</legend>
+        <legend>Teams de CAMPUS</legend>
         <form id="formularioTeams">
+            <label for="LsedeTeams">Seleccion Sedes:</label>
+            <select name="sede"></select><br><br>
             <label for="Lteam">Nombre del team:</label>
             <input type="text" name="nombreTeam" placeholder="Ingrese nombre del tema"><br><br>
             <label for="Ldias">Selecione los dias:</label><br><br>

@@ -19,28 +19,36 @@ es electiva u obligatoria
 eventos de errores
 */
 let formularioSedes = document.querySelector("#formularioSedes");
+let formularioTeams = document.querySelector("#formularioTeams");
 let campus = {};
 //FORMULARIO SEDES
 formularioSedes.addEventListener("submit", (e)=>{
     e.preventDefault();
-    let data = Object.fromEntries(new FormData(e.target))
+    let data = Object.fromEntries(new FormData(e.target));
     campus[`${data.nombreSede}`] = {Teams:[], Tecnologias:[], Niveles:[], Campers:[], Trainers:[], Roadmap:[]};
-    console.log(campus);
     listaSedes();
     formularioSedes.reset();
 });
 //LISTA DE SEDES
 let listaSedes = ()=>{
     let opciones = document.querySelector("[name='sede']");
-    console.log(opciones);
     opciones.innerHTML=null;
     for (let [val, id] of Object.entries(campus)){
         opciones.insertAdjacentHTML("beforeend", `
             <option value="${val}">${val}</option>
         `)  
     }
-}
+};
 //FORMULARIO DE TEAMS
+formularioTeams.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    let data = Object.fromEntries(new FormData(e.target));
+    let sede = data.sede;
+    delete data.sede;
+    campus[`${sede}`]["Teams"].unshift(data);
+    console.log(campus);
+    formularioTeams.reset();
+})
 //LISTA DE TEAMS
 //FORMULARIO DE TECNOLOGIAS
 //LISTA DE TECNOLOGIAS

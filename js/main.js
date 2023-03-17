@@ -21,6 +21,7 @@ eventos de errores
 let formularioSedes = document.querySelector("#formularioSedes");
 let formularioTeams = document.querySelector("#formularioTeams");
 let formularioTecnologias = document.querySelector("#formularioTecnologias");
+let formularioNiveles = document.querySelector("#formularioNiveles");
 let campus = {};
 //FORMULARIO SEDES
 formularioSedes.addEventListener("submit", (e)=>{
@@ -36,11 +37,16 @@ let listaSedes = ()=>{
     opciones.innerHTML=null;
     let opciones1 = document.querySelector("[name='sede1']");
     opciones1.innerHTML=null;
+    let opciones2 = document.querySelector("[name='sede2']");
+    opciones2.innerHTML=null;
     for (let [val, id] of Object.entries(campus)){
         opciones.insertAdjacentHTML("beforeend", `
             <option value="${val}">${val}</option>
         `)  
         opciones1.insertAdjacentHTML("beforeend", `
+            <option value="${val}">${val}</option>
+        `) 
+        opciones2.insertAdjacentHTML("beforeend", `
             <option value="${val}">${val}</option>
         `) 
     }
@@ -68,6 +74,15 @@ formularioTecnologias.addEventListener("submit", (e)=>{
 });
 //LISTA DE TECNOLOGIAS
 //FORMULARIO DE NIVELES
+formularioNiveles.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    let data = Object.fromEntries(new FormData(e.target));
+    let sede = data.sede2;
+    delete data.sede2;
+    campus[`${sede}`]["Niveles"].unshift(data);
+    console.log(campus);
+    formularioNiveles.reset();
+});
 //LISTA DE NIVELES
 //FORMULARIO CAMPERS
 //FORMULARIO TRAINERS

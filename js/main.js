@@ -20,6 +20,7 @@ eventos de errores
 */
 let formularioSedes = document.querySelector("#formularioSedes");
 let formularioTeams = document.querySelector("#formularioTeams");
+let formularioTecnologias = document.querySelector("#formularioTecnologias");
 let campus = {};
 //FORMULARIO SEDES
 formularioSedes.addEventListener("submit", (e)=>{
@@ -33,10 +34,15 @@ formularioSedes.addEventListener("submit", (e)=>{
 let listaSedes = ()=>{
     let opciones = document.querySelector("[name='sede']");
     opciones.innerHTML=null;
+    let opciones1 = document.querySelector("[name='sede1']");
+    opciones1.innerHTML=null;
     for (let [val, id] of Object.entries(campus)){
         opciones.insertAdjacentHTML("beforeend", `
             <option value="${val}">${val}</option>
         `)  
+        opciones1.insertAdjacentHTML("beforeend", `
+            <option value="${val}">${val}</option>
+        `) 
     }
 };
 //FORMULARIO DE TEAMS
@@ -51,6 +57,15 @@ formularioTeams.addEventListener("submit", (e)=>{
 })
 //LISTA DE TEAMS
 //FORMULARIO DE TECNOLOGIAS
+formularioTecnologias.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    let data = Object.fromEntries(new FormData(e.target));
+    let sede = data.sede1;
+    delete data.sede1;
+    campus[`${sede}`]["Tecnologias"].unshift(data);
+    console.log(campus);
+    formularioTecnologias.reset();
+});
 //LISTA DE TECNOLOGIAS
 //FORMULARIO DE NIVELES
 //LISTA DE NIVELES

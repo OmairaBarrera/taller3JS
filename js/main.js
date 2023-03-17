@@ -24,6 +24,7 @@ let formularioTecnologias = document.querySelector("#formularioTecnologias");
 let formularioNiveles = document.querySelector("#formularioNiveles");
 let formularioCampers = document.querySelector("#formularioCampers");
 let formularioTrainers = document.querySelector("#formularioTrainers")
+let formularioRoadmap = document.querySelector("#formularioRoadmap")
 let campus = {};
 //FORMULARIO SEDES
 formularioSedes.addEventListener("submit", (e)=>{
@@ -45,6 +46,8 @@ let listaSedes = ()=>{
     opciones3.innerHTML=null;
     let opciones4 = document.querySelector("[name='sede4']");
     opciones4.innerHTML=null;
+    let opciones5 = document.querySelector("[name='sede5']");
+    opciones5.innerHTML=null;
     for (let [val, id] of Object.entries(campus)){
         opciones.insertAdjacentHTML("beforeend", `
             <option value="${val}">${val}</option>
@@ -59,6 +62,9 @@ let listaSedes = ()=>{
             <option value="${val}">${val}</option>
         `)
         opciones4.insertAdjacentHTML("beforeend", `
+            <option value="${val}">${val}</option>
+        `)
+        opciones5.insertAdjacentHTML("beforeend", `
             <option value="${val}">${val}</option>
         `)
     }  
@@ -117,4 +123,12 @@ formularioTrainers.addEventListener("submit", (e)=>{
     formularioTrainers.reset();
 });
 //FORMULARIO DE ROADMAP
-
+formularioRoadmap.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    let data = Object.fromEntries(new FormData(e.target));
+    let sede = data.sede5;
+    delete data.sede5;
+    campus[`${sede}`]["Roadmap"].unshift(data);
+    console.log(campus);
+    formularioRoadmap.reset();
+});
